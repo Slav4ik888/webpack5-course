@@ -1,6 +1,9 @@
 import '../styles/index.scss';
 import Recipes from './recipes';
 
+import St from '../images/goods/st.jpg';
+import Avatar from '../images/avatar.svg';
+
 
 function App() {
   return (
@@ -10,9 +13,11 @@ function App() {
         <section>
           <h1>Oh Hai, React</h1>
         </section>
-      </main>
 
-      <Recipes />
+        <img src={St} alt="st" width="250" />
+        <img src={Avatar} alt="st" width="50" />
+        <Recipes />
+      </main>
     </>
   )
 }
