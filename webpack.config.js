@@ -1,14 +1,17 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const outputDirectory = 'dist';
 let mode = `development`;
+let target = `web`;
  
 if (process.env.NODE_ENV === `production`) {
-  console.log('production');
   mode = `production`;
+  target = `browserslist`;
 }
 
 module.exports = {
   mode,
+  target,
   // entry: {
   //   main: path.resolve(__dirname, `./src/index.js`)
   // },
@@ -22,6 +25,15 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(s[ac]|c)ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"
+        ],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -31,10 +43,13 @@ module.exports = {
     ]
   },
   devServer: {
-    static: 'dist'
+    static: 'dist',
+    hot: true,
     // port: 8080,
     // open: true,
     // historyApiFallback: true,
   },
+  plugins: [new MiniCssExtractPlugin()],
+
   devtool: `source-map`,
 }
