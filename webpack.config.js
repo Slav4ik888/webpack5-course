@@ -17,9 +17,6 @@ if (process.env.NODE_ENV === `production`) {
 module.exports = {
   mode,
   target,
-  // entry: {
-  //   main: path.resolve(__dirname, `./src/index.js`)
-  // },
 
   output: {
     path: path.resolve(__dirname, outputDirectory),
